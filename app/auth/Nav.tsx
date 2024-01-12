@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Login from "./Login"
+import Logged from "./Logged";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
 
@@ -9,11 +10,14 @@ export default async function Nav(){
     return (
       <nav className="flex justify-between items-center py-8">
         <Link href={"/"}>
-          <img className="font-bold text-lg" src={"rocket.png"} width={130}/>
+          <img className="font-bold text-lg" src={"rocket.png"} width={130} />
         </Link>
         {/* Client component 👇 */}
         <ul className="flex items-center gap-6">
-          <Login />
+          {!session?.user && <Login />}
+          {session?.user && session.user.image && (
+            <Logged image={session.user.image} />
+          )}
         </ul>
       </nav>
     );

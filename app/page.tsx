@@ -1,7 +1,11 @@
+'use client'
+import CreatePost from "./components/CreatePost"
+
 export default function Home() {
   return (
     <main>
-      <h1>Hello There !!</h1>
+      <h1>Hey There !</h1>
+      <CreatePost/>
     </main>
   )
 }

@@ -36,7 +36,7 @@ export default async function handler(
         .json({ err: "Please write something before we can comment it." });
     }
 
-    //Create Post
+    //Create Comment
     if (prismaUser) {
       try {
         const result = await prisma.comment.create({

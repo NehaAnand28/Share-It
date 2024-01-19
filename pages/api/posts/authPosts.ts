@@ -26,6 +26,7 @@ export default async function handler(
             },
             include: {
               comments: true,
+              hearts: true,
             },
           },
         },

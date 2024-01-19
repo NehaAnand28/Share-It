@@ -10,6 +10,12 @@ export type PostsType = {
     postId: string;
     userId: string;
   }[];
+  hearts?: {
+    user: any;
+    id: string;
+    postId: string;
+    userId: string;
+  }[];
   user: {
     name: string;
     image: string;

@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import axios, { AxiosError } from "axios";
 import { motion } from "framer-motion";
 
-type EditProps = {
+type EditData = {
   id: string;
   avatar: string;
   name: string;
@@ -30,7 +30,7 @@ export default function EditPost({
   title,
   comments,
   id,
-}: EditProps) {
+}: EditData) {
   const [toggle, setToggle] = useState(false);
   const queryClient = useQueryClient();
   let deleteToastID: string;

@@ -3,15 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-interface PostProps {
-  id: string;
-  name: string;
-  avatar: string;
-  postTitle: string;
-  comments:string
-}
 
-const Post: React.FC<PostProps> = ({
+type PostData = {
+  id: string;
+  avatar: string;
+  name: string;
+  postTitle: string;
+  comments?: {
+    id: string;
+    postId: string;
+    userId: string;
+  }[];
+};
+
+const Post: React.FC<PostData> = ({
   id,
   name,
   avatar,

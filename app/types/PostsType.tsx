@@ -3,6 +3,8 @@ export type PostsType = {
   id: string;
   createdAt?: string;
   comments?: {
+    title: string;
+    user: any;
     createdAt: string;
     id: string;
     postId: string;

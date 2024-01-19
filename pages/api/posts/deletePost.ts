@@ -14,7 +14,7 @@ export default async function handler(
         .status(401)
         .json({ message: "Please signin to delete a post." });
     }
-    const postIdToDelete :string = req.body.data
+    const postIdToDelete :string = req.body
     try {
       const data = await prisma.post.delete({
         where:{

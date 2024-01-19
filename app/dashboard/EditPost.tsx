@@ -41,15 +41,15 @@ export default function EditPost({
     },
     onError: (error) => {
       console.log(error);
-       if (error instanceof AxiosError) {
-         toast.dismiss(deleteToastID);
-         toast.error(error?.response?.data?.err, { id: deleteToastID });
-       }
+      if (error instanceof AxiosError) {
+        toast.dismiss(deleteToastID);
+        toast.error(error?.response?.data?.err, { id: deleteToastID });
+      }
     },
     onSuccess: (data) => {
       console.log(data);
       queryClient.invalidateQueries(["auth-posts"] as InvalidateQueryFilters);
-      toast.dismiss(deleteToastID)
+      toast.dismiss(deleteToastID);
       toast.success("Post has been deleted.", { id: deleteToastID });
     },
   });
@@ -72,7 +72,7 @@ export default function EditPost({
           <h3 className="font-bold text-gray-700">{name}</h3>
         </div>
         <div className="my-8">
-          <p className="text-black text-lg">{title}</p>
+          <p className="text-black text-lg break-all">{title}</p>
         </div>
         <div className="flex items-center gap-4 ">
           <p className=" text-sm font-bold text-gray-700">

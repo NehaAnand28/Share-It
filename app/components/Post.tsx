@@ -36,7 +36,7 @@ const Post: React.FC<PostProps> = ({
         <h3 className="font-bold text-gray-700 ">{name}</h3>
       </div>
       <div className="my-8 ">
-        <p className="text-black text-lg">{postTitle}</p>
+        <p className="text-black text-lg break-all">{postTitle}</p>
       </div>
       <div className="flex gap-4 cursor-pointer items-center">
         <Link

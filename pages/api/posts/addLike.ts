@@ -26,7 +26,7 @@ export default async function handler(
     if (prismaUser) {
       const heart = await prisma.heart.findFirst({
         where: {
-          postId: req.body.data.postId,
+          postId: req.body.data.id,
           userId: prismaUser.id,
         },
       });
@@ -35,7 +35,7 @@ export default async function handler(
         if (!heart) {
           const result = await prisma.heart.create({
             data: {
-              postId: req.body.data.postId,
+              postId: req.body.data.id,
               userId: prismaUser.id,
             },
           });

@@ -27,6 +27,7 @@ export default function MyPosts(): JSX.Element {
           name={data.name}
           title={post.title}
           comments={post.comments}
+          hearts={post.hearts}
         />
       ))}
     </div>

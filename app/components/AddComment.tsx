@@ -29,9 +29,9 @@ export default function AddComment({ id }: PostProps) {
       return axios.post("/api/posts/addComment", { data });
     },
 
-    onSuccess: (data) => {
-      queryClient.invalidateQueries(["detail-post"] as InvalidateQueryFilters);
+    onSuccess: async(data) => {
       setTitle("");
+      await queryClient.invalidateQueries(["detail-post"] as InvalidateQueryFilters);
       setIsDisabled(false);
       toast.dismiss(commentToastId)
       toast.success("Added your comment", { id: commentToastId });

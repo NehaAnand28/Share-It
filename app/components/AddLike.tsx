@@ -26,19 +26,21 @@ type PostProps = {
   }[];
 };
 export default function AddLike({ id ,hearts}: PostProps) {
-    const [likeCount, setLikeCount] = useState(hearts?.length ?? 0);
+  const [likeCount, setLikeCount] = useState(hearts?.length ?? 0);
+  console.log(likeCount)
     const [isLiked, setIsLiked] = useState(
      ( likeCount > 0) ? true : false
     );
+    console.log(isLiked)
    const queryClient = useQueryClient();
    const mutation = useMutation({
      mutationFn: (data: PostProps) => {
        return axios.post("/api/posts/addLike", { data });
      },
 
-     onSuccess: (data) => {
-       queryClient.invalidateQueries([
-         "posts","detail-posts","auth-posts"
+     onSuccess: async (data) => {
+       await queryClient.invalidateQueries([
+         "posts","auth-posts","detail-post"
        ] as InvalidateQueryFilters);
      },
      onError: (error) => {

@@ -14,5 +14,11 @@ export type AuthPosts = {
       title: string;
       userId: string;
     }[];
+    hearts?: {
+      user: any;
+      id: string;
+      postId: string;
+      userId: string;
+    }[];
   }[];
 };

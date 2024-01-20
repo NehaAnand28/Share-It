@@ -11,6 +11,7 @@ import {
 import toast from "react-hot-toast";
 import axios, { AxiosError } from "axios";
 import { motion } from "framer-motion";
+import AddLike from "../components/AddLike"; 
 
 type EditData = {
   id: string;
@@ -18,6 +19,12 @@ type EditData = {
   name: string;
   title: string;
   comments?: {
+    id: string;
+    postId: string;
+    userId: string;
+  }[];
+  hearts?: {
+    user: any;
     id: string;
     postId: string;
     userId: string;
@@ -30,7 +37,9 @@ export default function EditPost({
   title,
   comments,
   id,
+  hearts,
 }: EditData) {
+  console.log(id,hearts)
   const [toggle, setToggle] = useState(false);
   const queryClient = useQueryClient();
   let deleteToastID: string;
@@ -46,9 +55,9 @@ export default function EditPost({
         toast.error(error?.response?.data?.err, { id: deleteToastID });
       }
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       console.log(data);
-      queryClient.invalidateQueries(["auth-posts"] as InvalidateQueryFilters);
+      await queryClient.invalidateQueries(["auth-posts"] as InvalidateQueryFilters);
       toast.dismiss(deleteToastID);
       toast.success("Post has been deleted.", { id: deleteToastID });
     },
@@ -78,6 +87,7 @@ export default function EditPost({
           <p className=" text-sm font-bold text-gray-700">
             {comments?.length} Comments
           </p>
+          <AddLike id={id} hearts={hearts} />
           <button
             onClick={(e) => {
               e.stopPropagation();

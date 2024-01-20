@@ -8,9 +8,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    console.log("in  method " + req.method);
     const session = await getServerSession(req, res, authOptions);
-    console.log("in add comment session", session);
+
     if (!session) {
       console.log("error in getting session");
       return res
@@ -19,12 +18,12 @@ export default async function handler(
     }
 
     const { title, postId } = req.body.data;
-    console.log(title, postId);
+
     //Get User
     const prismaUser = await prisma.user.findUnique({
       where: { email: session?.user?.email ?? "" },
     });
-    console.log(prismaUser);
+
     //Check title
     if (title.length > 300) {
       return res.status(403).json({ err: "Please write a shorter comment" });
@@ -48,7 +47,9 @@ export default async function handler(
         });
         res.status(200).json(result);
       } catch (err) {
-        res.status(403).json({ err: "Error has occurred while adding a comment" });
+        res
+          .status(403)
+          .json({ err: "Error has occurred while adding a comment" });
       }
     } else {
       res.status(403).json({ err: "User not found" });

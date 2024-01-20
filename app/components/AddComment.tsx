@@ -19,7 +19,6 @@ type PostProps = {
 };
 export default function AddComment({ id }: PostProps) {
   let commentToastId: string;
-  console.log(id);
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -37,7 +36,6 @@ export default function AddComment({ id }: PostProps) {
       toast.success("Added your comment", { id: commentToastId });
     },
     onError: (error) => {
-      console.log(error);
       setIsDisabled(false);
       if (error instanceof AxiosError) {
         toast.dismiss(commentToastId)

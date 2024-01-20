@@ -18,7 +18,6 @@ export default function Home() {
     });
     if (error) return error;
     if (isPending) return "Loading.....";
-    if (data) console.log(data);
   return (
     <main>
       <h1>Hey There !</h1>

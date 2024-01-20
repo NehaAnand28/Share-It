@@ -17,7 +17,6 @@ export default function CreatePost() {
       return axios.post("/api/posts/addPost", {title : title});
     },
     onError: (error) => {
-      console.log(error.message);
       if (error instanceof AxiosError) {
         toast.dismiss(toastPostID);
         toast.error(error?.response?.data?.err, { id: toastPostID });
@@ -25,7 +24,6 @@ export default function CreatePost() {
       setIsDisabled(false);
     },
     onSuccess: (data) => {
-      console.log(data)
       queryClient.invalidateQueries(["posts"] as InvalidateQueryFilters);
       toast.dismiss(toastPostID)
       toast.success("Post has been made 🔥", { id: toastPostID });

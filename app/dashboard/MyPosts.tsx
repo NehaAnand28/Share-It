@@ -6,7 +6,6 @@ import { AuthPosts } from "../types/AuthPosts";
 import EditPost from "./EditPost";
 const fetchAuthPosts = async () => {
   const response = await axios.get("/api/posts/authPosts");
-  console.log(response.data)
   return response.data;
 };
 
@@ -16,7 +15,6 @@ export default function MyPosts(): JSX.Element {
      queryKey: ["auth-posts"],
    });
   if (isPending) return <h1>Posts are loading...</h1>;
-  if (data) console.log(data);
   return (
     <div>
       {data?.posts?.map((post) => (

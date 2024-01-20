@@ -27,11 +27,9 @@ type PostProps = {
 };
 export default function AddLike({ id ,hearts}: PostProps) {
   const [likeCount, setLikeCount] = useState(hearts?.length ?? 0);
-  console.log(likeCount)
     const [isLiked, setIsLiked] = useState(
      ( likeCount > 0) ? true : false
     );
-    console.log(isLiked)
    const queryClient = useQueryClient();
    const mutation = useMutation({
      mutationFn: (data: PostProps) => {
@@ -44,7 +42,6 @@ export default function AddLike({ id ,hearts}: PostProps) {
        ] as InvalidateQueryFilters);
      },
      onError: (error) => {
-       console.log(error);
        if (error instanceof AxiosError) {
          toast.error(error?.response?.data.err);
        }

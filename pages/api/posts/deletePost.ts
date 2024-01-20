@@ -8,6 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "DELETE") {
+    //delete a post
     const session = await getServerSession(req, res, authOptions);
     if (!session) {
       return res

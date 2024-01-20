@@ -8,14 +8,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    console.log("in  method " + req.method);
     const session = await getServerSession(req, res, authOptions);
-    console.log("in add like session", session);
+
     if (!session) {
       console.log("error in getting session");
-      return res
-        .status(401)
-        .json({ err: "Please signin to add a comment." });
+      return res.status(401).json({ err: "Please signin to add a comment." });
     }
 
     //Get User
@@ -30,7 +27,7 @@ export default async function handler(
           userId: prismaUser.id,
         },
       });
-      console.log("hearts",heart)
+
       try {
         if (!heart) {
           const result = await prisma.heart.create({
@@ -39,7 +36,7 @@ export default async function handler(
               userId: prismaUser.id,
             },
           });
-          console.log(result);
+
           res.status(201).json(result);
         } else {
           const result = await prisma.heart.delete({

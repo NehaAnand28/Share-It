@@ -39,7 +39,6 @@ export default function EditPost({
   id,
   hearts,
 }: EditData) {
-  console.log(id,hearts)
   const [toggle, setToggle] = useState(false);
   const queryClient = useQueryClient();
   let deleteToastID: string;
@@ -49,14 +48,12 @@ export default function EditPost({
       return axios.delete("/api/posts/deletePost", { data: id });
     },
     onError: (error) => {
-      console.log(error);
       if (error instanceof AxiosError) {
         toast.dismiss(deleteToastID);
         toast.error(error?.response?.data?.err, { id: deleteToastID });
       }
     },
     onSuccess: async (data) => {
-      console.log(data);
       await queryClient.invalidateQueries(["auth-posts"] as InvalidateQueryFilters);
       toast.dismiss(deleteToastID);
       toast.success("Post has been deleted.", { id: deleteToastID });

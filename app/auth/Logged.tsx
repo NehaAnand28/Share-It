@@ -9,9 +9,9 @@ type User =  {
 }
 export default function Logged({image}:User){
     return (
-      <li className="list-none flex items-center gap-8">
+      <li className="list-none flex items-center gap-4">
         <button
-          className="text-sm bg-gray-700 py-2 px-6 rounded-xl disabled:opacity-25"
+          className=" text-sm bg-gray-700 py-2 px-4 rounded-xl disabled:opacity-25"
           onClick={() => signOut()}
         >
           Sign Out

@@ -20,7 +20,7 @@ export default function Home() {
     if (isPending) return "Loading.....";
   return (
     <main>
-      <h1>Hey There !</h1>
+      <h1>Share your thoughts with the world!</h1>
       <CreatePost />
       {data?.map((post : any) => (
         <Post

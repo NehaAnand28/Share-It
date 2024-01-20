@@ -50,7 +50,7 @@ const Post: React.FC<PostData> = ({
         <h3 className="font-bold text-gray-700 ">{name}</h3>
       </div>
       <div className="my-8 ">
-        <p className="text-black text-lg break-all">{postTitle}</p>
+        <p className="text-black text-m break-all">{postTitle}</p>
       </div>
       <div className="flex gap-6 cursor-pointer items-center">
         <Link

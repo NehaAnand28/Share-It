@@ -55,7 +55,7 @@ export default function PostDetail(url: URL) {
               alt="avatar"
             />
             <h3 className="font-bold text-gray-700 ">{comment?.user?.name}</h3>
-            <h2 className="text-sm text-gray-400">{comment.createdAt}</h2>
+            {/* <h2 className="text-sm text-gray-400">{comment.createdAt}</h2> */}
           </div>
           <div className="py-4 text-black text-lg">{comment.title}</div>
         </motion.div>

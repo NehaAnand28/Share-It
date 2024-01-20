@@ -9,8 +9,8 @@ export default async function Nav(){
     return (
       <nav className="flex justify-between items-center py-8">
         <Link className="flex items-center" href={"/"}>
-          <img className="font-bold text-lg" src={"rocket.png"} width={130} />
-          <h1 className="text-4xl font-bold text-white">Share It</h1>
+          <img className="font-bold text-lg" src={"rocket.png"} width={120} />
+          <h1 className="text-2xl font-bold text-white">Share It</h1>
         </Link>
         {/* Client component 👇 */}
         <ul className="flex items-center gap-6">

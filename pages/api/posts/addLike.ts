@@ -12,7 +12,7 @@ export default async function handler(
 
     if (!session) {
       console.log("error in getting session");
-      return res.status(401).json({ err: "Please signin to add a comment." });
+      return res.status(401).json({ err: "Please signin to add a Like." });
     }
 
     //Get User

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   InvalidateQueryFilters,
   useMutation,
@@ -26,14 +26,16 @@ type PostProps = {
   }[];
 };
 export default function AddLike({ id ,hearts}: PostProps) {
-  const [likeCount, setLikeCount] = useState(hearts?.length ?? 0);
-    const [isLiked, setIsLiked] = useState(
-     ( likeCount > 0) ? true : false
-    );
-   const queryClient = useQueryClient();
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [isLiked, setIsLiked] = useState(
+    hearts?.some((heart) => heart.userId === currentUserId) ?? false
+  );
+  const [likeCount, setLikeCount] = useState(0);
+  // const [noOfHearts , setNoOfHearts] =useState(hearts?.length ?? 0)
+  const queryClient = useQueryClient();
    const mutation = useMutation({
-     mutationFn: (data: PostProps) => {
-       return axios.post("/api/posts/addLike", { data });
+     mutationFn: async (data: PostProps) => {
+       return await axios.post("/api/posts/addLike", { data });
      },
 
      onSuccess: async (data) => {
@@ -48,6 +50,21 @@ export default function AddLike({ id ,hearts}: PostProps) {
      },
    });
 
+    useEffect(() => {
+      const getCurrentUser = async () => {
+        try {
+          const response = await axios.get<string>("/api/user/getCurrentUser");
+          setCurrentUserId(response.data);
+        } catch (error: any) {
+          console.error("Error fetching current user ID", error);
+        }
+      };
+
+      getCurrentUser();
+    }, []);
+
+    const noOfHearts = hearts?.length ?? 0
+
    const handleLikeToggle = () => {
      setIsLiked(!isLiked);
      // Update like count
@@ -58,13 +75,13 @@ export default function AddLike({ id ,hearts}: PostProps) {
   return (
     <div className="flex gap-2 items-center">
       <button onClick={handleLikeToggle}>
-        { likeCount > 0 || isLiked ? (
+        { noOfHearts > 0 || isLiked ? (
           <FaHeart className=" text-lg text-red-600" />
         ) : (
           <FaHeart className="text-gray-500" />
         )}
       </button>
-      <p className="text-sm font-bold text-gray-700">{likeCount} Likes</p>
+      <p className="text-sm font-bold text-gray-700">{noOfHearts} Likes</p>
     </div>
   );
 }

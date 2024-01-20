@@ -39,3 +39,6 @@ next-env.d.ts
 # environemnts and migrations
 .env
 migration_lock.toml
+
+# Prisma generated client
+prisma/generated/client
